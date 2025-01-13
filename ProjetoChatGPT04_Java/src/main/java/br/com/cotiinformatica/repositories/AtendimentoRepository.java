@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.repositories;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,9 +13,8 @@ import br.com.cotiinformatica.entities.Atendimento;
 @Repository
 public interface AtendimentoRepository extends MongoRepository<Atendimento, UUID> {
 
-	@Query(
-			value = "{ 'emailCliente' : ?0 }",
-			sort = "{ 'dataHoraAtendimento' : -1 }"
-	)
-	List<Atendimento> find(String emailCliente);
+	List<Atendimento> findByEmailCliente(String emailCliente);
+	
+	@Query("{ 'dataHoraAtendimento' : { $gte : ?0, $lte : ?1 } }")
+	List<Atendimento> findByDataAtendimento(Date dataInicio, Date dataFim);
 }

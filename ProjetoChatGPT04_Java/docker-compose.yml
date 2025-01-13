@@ -21,5 +21,12 @@ services:
     volumes:
       - mongodb_data:/data/db
 
+  mailhog:
+     image: mailhog/mailhog
+     container_name: mailhog-java
+     ports:
+        - "1026:1025" 
+        - "8026:8025" 
+
 volumes:
   mongodb_data:

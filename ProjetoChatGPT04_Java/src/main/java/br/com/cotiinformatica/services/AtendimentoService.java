@@ -56,7 +56,8 @@ public class AtendimentoService {
 		mensagens.add(contexto);
 		
 		//consultando até os 3 ultimos atendimentos que este cliente já teve com a IA
-		var atendimentos = atendimentoRepository.find(cliente.getEmail()).stream()
+		var atendimentos = atendimentoRepository.findByEmailCliente(cliente.getEmail()).stream()
+							.sorted((a1, a2) -> a2.getDataHoraAtendimento().compareTo(a1.getDataHoraAtendimento()))
 							.limit(3)
 							.map(Atendimento::getConversa)
 							.collect(Collectors.joining(", "));
