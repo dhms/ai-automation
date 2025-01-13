@@ -17,7 +17,7 @@ public class OpenAIGenerateImage {
 		
 		//registrando o ENDPOINT e a chave de autenticação
 		String apiUrl = "https://api.openai.com/v1/images/generations";
-		String apiKey = "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";
+		String apiKey = "your key here";
 		
 		try (var httpClient  = HttpClients.createDefault()) {
 			
